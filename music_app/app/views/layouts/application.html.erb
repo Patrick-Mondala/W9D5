@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MusicApp</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header style="display:flex;justify-content:center;align-items:center;">
+      <h1>Music App</h1>
+      <% if logged_in? %>
+        <form action="<%= session_url %>" method="POST">
+          <input type="hidden" name="_method" value="DELETE">
+          <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+          <input type="submit" value="sign-out">
+        </form>
+      <% end %>
+    </header>
+    
+    <div style="display:flex;justify-content:center;">
+      <% if controller.controller_name == "sessions" %>
+        <p>Not registered? <a href="<%= new_user_url %>" style="display:block;background:#4E9CAF;text-align:center;text-decoration:none;border-radius:50px">Sign-up!</a></p>
+      <% elsif controller.controller_name == "users" && controller.action_name == "new" %>
+        <p>Already have an account? <a href="<%= new_session_url %>" style="display:block;background:#4E9CAF;text-align:center;text-decoration:none;border-radius:50px">Sign-in!</a></p>
+      <% end %>
+    </div>
+
+    <%= yield %>
+
+    <div style="display:flex;justify-content:center;">
+    <% if flash[:errors] %>
+      <ul>
+      <% flash[:errors].each do |error| %>
+        <li><%=error%></li>
+      <% end %>
+      </ul>
+      <% end %>
+    </div>
+  </body>
+</html>

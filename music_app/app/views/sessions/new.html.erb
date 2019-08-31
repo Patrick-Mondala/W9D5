@@ -1,0 +1,21 @@
+<h2 style="display:flex;justify-content:center;">Sign-in to your account!</h2>
+<div style="display:flex;justify-content:center;">
+<form action="<%= session_url %>" method="POST">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+    <label>
+        email
+        <input type="text" name="user[email]">
+    </label>
+    <br>
+
+    <label>
+        password
+        <input type="password" name="user[password]">
+    </label>
+    <br>
+
+    <input type="submit" value="sign-in">
+
+</form>
+</div>

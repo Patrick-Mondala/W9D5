@@ -1,0 +1,7 @@
+<h2 style="display:flex;justify-content:center;">Bands</h2>
+<a href="<%= new_band_url %>" style="display:block;background:#4E9CAF;text-align:center;text-decoration:none;border-radius:50px">Add band!</a>
+<ul style="display:flex;justify-content:center;">
+<% Band.all.each do |band| %>
+    <li><a href="<%= band_url(band) %>"><%= band.name %></a></li>
+<% end %>
+</ul>
